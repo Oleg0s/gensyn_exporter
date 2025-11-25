@@ -4,3 +4,4 @@ flask_caching
 gunicorn
 prometheus_client
 redis
+requests
