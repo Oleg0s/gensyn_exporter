@@ -20,7 +20,7 @@ def home():
     return jsonify({"result": "Ok"})
 
 @app.route('/metrics')
-@cache.cached(timeout=10)
+@cache.cached(timeout=3)
 def metrics():
     gensyn_rewards_gauge.clear()
     gensyn_wins_gauge.clear()
