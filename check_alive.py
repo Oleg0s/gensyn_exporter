@@ -34,7 +34,12 @@ if __name__ == "__main__":
         time.sleep(60)
 
         print("Checking statuses...")
-        new_status = get_statuses()
+        try:
+            new_status = get_statuses()
+        except Exception as e:
+            print(f"Error checking statuses: {e}")
+            continue
+
         for node, alive in new_status.items():
             if alive and (node not in old_status or not old_status[node]):
                 message = f"{node} is alive!"
