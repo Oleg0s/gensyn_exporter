@@ -1,5 +1,5 @@
 import requests
-from config import PROMETHEUS_URL
+from config import PROMETHEUS_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 import time
 
 
@@ -19,16 +19,30 @@ def get_statuses():
     return nodes
 
 
+def send_telegram_message(message):
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
+    data = {
+        "chat_id": TELEGRAM_CHAT_ID,
+        "text": message
+    }
+    requests.post(url, json=data)
+
+
 if __name__ == "__main__":
     old_status = get_statuses()
     while True:
-        time.sleep(5)
+        time.sleep(60)
 
         print("Checking statuses...")
         new_status = get_statuses()
         for node, alive in new_status.items():
             if alive and (node not in old_status or not old_status[node]):
-                print(f"{node} is alive!")
+                message = f"{node} is alive!"
+                print(message)
+                send_telegram_message(message)
             if not alive and node in old_status and old_status[node]:
-                print(f"{node} is dead!")
+                message = f"{node} is DEAD!"
+                print(message)
+                send_telegram_message(message)
+
         old_status = new_status
