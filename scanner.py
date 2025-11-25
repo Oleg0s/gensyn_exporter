@@ -32,4 +32,6 @@ def scan():
 
 
 if __name__ == "__main__":
-    scan()
+    while True:
+        scan()
+        time.sleep(600)
