@@ -1,7 +1,6 @@
 from flask import Flask, jsonify, Response
 from flask_caching import Cache
 from prometheus_client import Gauge, generate_latest, CONTENT_TYPE_LATEST
-from gensyn_contract import GensynContract, GensynOldContract
 from peers import peers
 from config import TAG
 from redis_store import RedisStore
