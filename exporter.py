@@ -3,9 +3,12 @@ from flask_caching import Cache
 from prometheus_client import Gauge, generate_latest, CONTENT_TYPE_LATEST
 from gensyn_contract import GensynContract, GensynOldContract
 from peers import peers
+from config import TAG
+from redis_store import RedisStore
 
 gensyn_rewards_gauge = Gauge('gensyn_rewards', 'Gensyn rewards by peer id', ['group', 'peer_id', 'short_id'])
 gensyn_wins_gauge = Gauge('gensyn_wins', 'Gensyn wins by peer id', ['group', 'peer_id', 'short_id'])
+gensyn_votes_gauge = Gauge('gensyn_votes', 'Gensyn votes by peer id', ['group', 'peer_id', 'short_id'])
 
 app = Flask(__name__)
 app.config['CACHE_TYPE'] = 'simple'  # for simple in-memory cache, or use 'redis', 'memcached', etc.
@@ -17,21 +20,22 @@ def home():
     return jsonify({"result": "Ok"})
 
 @app.route('/metrics')
-@cache.cached(timeout=60 * 5)
+@cache.cached(timeout=10)
 def metrics():
     gensyn_rewards_gauge.clear()
     gensyn_wins_gauge.clear()
+    gensyn_votes_gauge.clear()
 
-    rewards = {group: {peer: 0 for peer in g_peers} for group, g_peers in peers.items()}
-    for c in [GensynOldContract(), GensynContract()]:
-        for group, g_peers in peers.items():
-            result = c.getTotalRewards(g_peers)
-            for i in range(len(result)):
-                rewards[group][g_peers[i]] += result[i]
+    redis = RedisStore()
+    rewards = redis.get(f"{TAG}:rewards")
+    wins = redis.get(f"{TAG}:wins")
+    votes = redis.get(f"{TAG}:votes")
 
     for group, g_peers in peers.items():
         for peer in g_peers:
             gensyn_rewards_gauge.labels(group=group, peer_id=peer, short_id=peer[-4:]).set(rewards[group][peer])
+            gensyn_wins_gauge.labels(group=group, peer_id=peer, short_id=peer[-4:]).set(wins[group][peer])
+            gensyn_votes_gauge.labels(group=group, peer_id=peer, short_id=peer[-4:]).set(votes[group][peer])
 
     return Response(generate_latest(), mimetype=CONTENT_TYPE_LATEST)
 
