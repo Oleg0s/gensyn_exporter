@@ -3,8 +3,9 @@ peers = {
         [
             "QmYsuPqJhE4TVDxnPY8DezX1yitCT7pGF2z3DQY29rShZh",
             "QmYYwER6Tvs6MtP6BCramarS4JLVBViKKmt12C3S1qbzyn",
-            "QmaYGPFSzLQwnFrpRi7gG68qiNmAcDF3obqUs415CXGUHU",
-            "QmUjB9XQXPpjHDqe2CAEuKPaN5tVmgy9vekr37shq4jGnG"
+            # "QmaYGPFSzLQwnFrpRi7gG68qiNmAcDF3obqUs415CXGUHU",
+            "QmUjB9XQXPpjHDqe2CAEuKPaN5tVmgy9vekr37shq4jGnG",
+            "QmSo4fRBiwAKEUoKRceKjSR31ajxPzF3eBWMmBEXTwm13u", #[melodic agile antelope]
         ],
     "Pavel":
         [

@@ -27,12 +27,13 @@ class GensynOldContract(GensynContract):
     name = "Old smart contract"
 
 if __name__ == "__main__":
-    for c in [GensynOldContract(), GensynContract()]:
-        for f in c.contract.functions:
-            print(f)
+    # for c in [GensynOldContract(), GensynContract()]:
+    #     for f in c.contract.functions:
+    #         print(f)
+    #
+    #     print(c.getVoterVoteCount("QmaYGPFSzLQwnFrpRi7gG68qiNmAcDF3obqUs415CXGUHU"))
 
-        print(c.getVoterVoteCount("QmaYGPFSzLQwnFrpRi7gG68qiNmAcDF3obqUs415CXGUHU"))
-
+    # # Rewards
     # for c in [GensynOldContract(), GensynContract()]:
     #     print(c.name)
     #     print("=" * 20)
@@ -42,3 +43,14 @@ if __name__ == "__main__":
     #         for i in range(len(rewards)):
     #             print(f" ...{peers[peer][i][-4:]}: {rewards[i]}")
     #         print("-" * 20)
+
+    # Participation
+    for c in [GensynOldContract(), GensynContract()]:
+        print(c.name)
+        print("=" * 20)
+        for group, g_peers in peers.items():
+            print(f"{group}")
+            for peer in g_peers:
+                votes = c.getVoterVoteCount(peer) * 3
+                print(f" ...{peer[-4:]}: {votes}")
+            print("-" * 20)
