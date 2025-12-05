@@ -24,7 +24,8 @@ peers = {
         ],
     "Alexey":
         [
-            "QmdKQPVYLwPr8jdDt69PFmag5oouTkfmyfzjqBs691i8Wd"
+            "QmdKQPVYLwPr8jdDt69PFmag5oouTkfmyfzjqBs691i8Wd",
+            "QmY9ievLDj6pXWyYqeXHKHNBWKSYnLcEqFCuwtQ3ML1dzp"
         ]
 }
 
