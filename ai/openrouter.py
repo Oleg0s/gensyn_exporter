@@ -25,7 +25,7 @@ class OpenRouterClient:
                         "content": prompt
                     }
                 ],
-                "temperature": 0,
+                "temperature": 1,
             })
         )
 
