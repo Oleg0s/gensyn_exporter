@@ -1,6 +1,11 @@
 import requests
 from config import PROMETHEUS_URL, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
 import time
+from pathlib import Path
+from ai.openrouter import OpenRouterClient
+from ai.prompt_formatter import PromptFormatter
+from ai.gensyn_bot_agent import GensynBotAgent
+import config
 
 
 def query_prometheus(query):
@@ -29,6 +34,10 @@ def send_telegram_message(message):
 
 
 if __name__ == "__main__":
+    open_router = OpenRouterClient(config.openrouter_api_key, config.openrouter_model_name)
+    prompt_formatter = PromptFormatter()
+    agent = GensynBotAgent(open_router, prompt_formatter, Path("ai/prompt.txt"))
+
     old_status = get_statuses()
     while True:
         time.sleep(60)
@@ -40,14 +49,24 @@ if __name__ == "__main__":
             print(f"Error checking statuses: {e}")
             continue
 
+        messages = []
         for node, alive in new_status.items():
             if alive and (node not in old_status or not old_status[node]):
                 message = f"{node} is alive!"
                 print(message)
-                send_telegram_message(message)
+                #send_telegram_message(message)
+                messages.append(message)
             if not alive and node in old_status and old_status[node]:
                 message = f"{node} is DEAD!"
                 print(message)
-                send_telegram_message(message)
+                #send_telegram_message(message)
+                messages.append(message)
+
+        if messages:
+            try:
+                ai_answer = agent.analyse_messages(messages)
+                send_telegram_message(ai_answer)
+            except Exception as e:
+                send_telegram_message('\n'.join(messages))
 
         old_status = new_status
