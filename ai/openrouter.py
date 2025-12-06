@@ -15,7 +15,7 @@ class OpenRouterClient:
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
                 "HTTP-Referer": "https://nuts-accountant.local",  
-                "X-Title": "Nuts Reporter Bot", 
+                "X-Title": "Gensyn Bot",
             },
             data=json.dumps({
                 "model": self.model,
