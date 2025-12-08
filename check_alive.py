@@ -65,8 +65,9 @@ if __name__ == "__main__":
         if messages:
             try:
                 ai_answer = agent.analyse_messages(messages)
-                send_telegram_message(ai_answer)
+                send_telegram_message(f"[{agent.ai_api.model}]\n{ai_answer}")
             except Exception as e:
-                send_telegram_message('\n'.join(messages))
+                tmess = f"[{agent.ai_api.model}]\n" + '\n'.join(messages)
+                send_telegram_message(tmess)
 
         old_status = new_status

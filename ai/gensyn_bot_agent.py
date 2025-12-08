@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 
 
 class AIApi(Protocol):
+    model: str
     def get_chat_response(self, prompt: str) -> str:
         ...
 
