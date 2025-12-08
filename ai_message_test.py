@@ -9,6 +9,9 @@ if __name__ == "__main__":
     prompt_formatter = PromptFormatter()
     agent = GensynBotAgent(open_router, prompt_formatter, Path("ai/prompt.txt"))
     # a = agent.analyse_messages(["Oleg0s:ZYBf is alive!", "Pavel:P2rT is DEAD!"])
-    a = agent.analyse_messages(["Oleg0s:ZYBf is alive!", " Alexey:i8Wd is DEAD!", "Pavel:P2rT is DEAD!"])
-    print(a)
+    try:
+        a = agent.analyse_messages(["Oleg0s:ZYBf is alive!", " Alexey:i8Wd is DEAD!", "Pavel:P2rT is DEAD!"])
+        print(a)
+    except Exception as e:
+        print(e)
 
