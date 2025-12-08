@@ -67,6 +67,7 @@ if __name__ == "__main__":
                 ai_answer = agent.analyse_messages(messages)
                 send_telegram_message(f"[{agent.ai_api.model}]\n{ai_answer}")
             except Exception as e:
+                print(f"[{agent.ai_api.model}] Error: {e}")
                 tmess = f"[{agent.ai_api.model}]\n" + '\n'.join(messages)
                 send_telegram_message(tmess)
 

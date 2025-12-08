@@ -11,7 +11,7 @@ openrouter_free_model_list = [
     "kwaipilot/kat-coder-pro:free",
     "nvidia/nemotron-nano-12b-v2-vl:free",
     "alibaba/tongyi-deepresearch-30b-a3b:free",
-    "meituan/longcat-flash-chat:free",
+#    "meituan/longcat-flash-chat:free",
     "nvidia/nemotron-nano-9b-v2:free",
     "openai/gpt-oss-120b:free",
     "z-ai/glm-4.5-air:free",
