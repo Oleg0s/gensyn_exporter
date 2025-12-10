@@ -26,7 +26,8 @@ peers = {
         [
             "QmdKQPVYLwPr8jdDt69PFmag5oouTkfmyfzjqBs691i8Wd",
             "QmY9ievLDj6pXWyYqeXHKHNBWKSYnLcEqFCuwtQ3ML1dzp",
-            "QmYsKcUHCt3f5DQJ2NtetcK3X7LQXaJY1ZB4erBqcYoZ9h"
+            "QmYsKcUHCt3f5DQJ2NtetcK3X7LQXaJY1ZB4erBqcYoZ9h",
+            "Qmaz1FA9x3KJrz7a7tn8fmsiqMMsrXAwNWnNMLivDEABKJ"
         ]
 }
 
