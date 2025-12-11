@@ -5,10 +5,10 @@ import requests
 
 openrouter_free_model_list = [
     "amazon/nova-2-lite-v1:free",
-    "tngtech/tng-r1t-chimera:free",
+    # "tngtech/tng-r1t-chimera:free",
     "kwaipilot/kat-coder-pro:free",
     # "google/gemma-3n-e2b-it:free",
-    "tngtech/deepseek-r1t2-chimera:free",
+    # "tngtech/deepseek-r1t2-chimera:free",
     "google/gemma-3-4b-it:free",
     # "meta-llama/llama-3.3-70b-instruct:free",
     # "nousresearch/hermes-3-llama-3.1-405b:free"
