@@ -14,6 +14,12 @@ openrouter_free_model_list = [
     # "nousresearch/hermes-3-llama-3.1-405b:free"
 ]
 
+openrouter_model_list = [
+    # "openai/gpt-oss-120b",
+    # "anthropic/claude-sonnet-4.5",
+    "qwen/qwen-2.5-coder-32b-instruct"
+]
+
 
 class OpenRouterClient:
     def __init__(self, api_key: str, model: str = "deepseek/deepseek-chat"):
