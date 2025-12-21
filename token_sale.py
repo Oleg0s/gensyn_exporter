@@ -120,11 +120,12 @@ committers_list.sort(key=lambda x: x["total_usd_amount"], reverse=True)
 
 # Print results
 print("\nList of committers (sorted by total amount descending):")
-for c in committers_list[:50]:
-    print(f"Address: {c['address']}")
-    print(f"  Total USD: ${c['total_usd_amount']:,.2f}")
-    print(f"  USDC: ${c['usdc_amount']:,.2f} | USDT: ${c['usdt_amount']:,.2f}")
-    print(f"  Price: {c['price']} | Lockup: {c['lockup']}\n")
+for i in range(50):
+    c = committers_list[i]
+    print(f"{i + 1}. Address: {c['address']}")
+    print(f"      Total USD: ${c['total_usd_amount']:,.2f}")
+    # print(f"  USDC: ${c['usdc_amount']:,.2f} | USDT: ${c['usdt_amount']:,.2f}")
+    print(f"      Price: {c['price']} | Lockup: {c['lockup']}\n")
 
 # Optional: Save to CSV
 import csv
