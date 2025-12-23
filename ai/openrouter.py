@@ -15,9 +15,11 @@ openrouter_free_model_list = [
 ]
 
 openrouter_model_list = [
-    # "openai/gpt-oss-120b",
-    # "anthropic/claude-sonnet-4.5",
-    "qwen/qwen-2.5-coder-32b-instruct"
+    "openai/gpt-oss-120b",
+    "anthropic/claude-sonnet-4.5",
+    "minimax/minimax-m2.1",
+    "mistralai/mistral-small-creative",
+    "nvidia/nemotron-3-nano-30b-a3b"
 ]
 
 
@@ -28,7 +30,7 @@ class OpenRouterClient:
         self.base_url = "https://openrouter.ai/api/v1/chat/completions"
 
     def get_chat_response(self, prompt: str) -> str:
-        self.model = random.choice(openrouter_free_model_list)
+        self.model = random.choice(openrouter_model_list)
         print(f"Using model: {self.model}")
         response = requests.post(
             url=self.base_url,
