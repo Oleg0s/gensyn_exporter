@@ -45,6 +45,7 @@ if __name__ == "__main__":
     #         print("-" * 20)
 
     # Participation
+    votes_gr = {k: 0 for k in peers.keys()}
     for c in [GensynOldContract(), GensynContract()]:
         print(c.name)
         print("=" * 20)
@@ -52,5 +53,8 @@ if __name__ == "__main__":
             print(f"{group}")
             for peer in g_peers:
                 votes = c.getVoterVoteCount(peer) * 3
+                votes_gr[group] += votes
                 print(f" ...{peer[-4:]}: {votes}")
             print("-" * 20)
+
+    print(votes_gr)
